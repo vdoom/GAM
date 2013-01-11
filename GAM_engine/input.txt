@@ -1,0 +1,6 @@
+[0:34:39:841]GAMInput Created!
+[0:34:40:80]Init KeyBoard Succes
+[0:34:40:80]Init Mouse Succes
+[0:34:50:829]Terminate Mouse!
+[0:34:50:829]Terminate KeyBoard!
+[0:34:50:829]Destroy GAMInput!
