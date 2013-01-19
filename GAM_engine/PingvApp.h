@@ -16,7 +16,7 @@ private:
 	PingvInputProcessor* m_PingvInputProcessor;
 	void MoveCamera()
 	{
-		this->m_pCamera->MoveUp(5.5);
+		this->m_pCamera->MoveUp(0.1);
 		//wchar_t *YY=new wchar_t[10];
 		//_itow(GetTime().GetDelta(), YY, 10);
 		m_pErroreLoger->SendToLog(wstring(_T("Move")));
@@ -45,7 +45,8 @@ public:
 		objectVert->CreatePlane(D3DXVECTOR3(-10, 0, -10), D3DXVECTOR3(10 ,0 ,10), VertexObject::IndexingType::Triangle);
 		m_pObjects->push_back(objectVert);
 
-		m_timer = new GAMTimer<PingvApp>(6000, this, &PingvApp::MoveCamera);
+		m_timer = new GAMTimer<PingvApp>(1000, this, &PingvApp::MoveCamera, true);
+		m_pObjects->push_back(m_timer);
 	}
 	virtual HRESULT InitInput(HINSTANCE t_hinst)
 	{
@@ -62,7 +63,7 @@ public:
 	virtual void Render()
 	{
 		GAMApp::Render();
-		m_timer->Update();//->Update();
+		//m_timer->Update();//->Update();
 		//m_inputProcessor->UpdateInput();
 	}
 };

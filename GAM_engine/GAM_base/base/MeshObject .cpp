@@ -208,7 +208,7 @@ void MeshObject::Draw()
 		DDevice->SetMaterial( &material);   
 		if(texture1)DDevice->SetTexture( 0,texture1);
 		mesh->DrawSubset(0);
-		DDevice->SetTransform(D3DTS_WORLD, &GAMObject::IdentityMatrix());
+		DDevice->SetTransform(D3DTS_WORLD, &GAMVisElement::IdentityMatrix());
 	}
 	if(!items.empty())
 	{

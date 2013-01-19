@@ -1,7 +1,7 @@
 #ifndef H_MESH_OBJECT
 #define H_MESH_OBJECT
 
-#include "GAMObject.h"
+#include "GAMVisElemen.h"
 #include "MeshLoader.h"
 #include "Xmath.h"
 #include "Bounds.h"
@@ -9,7 +9,7 @@
 using namespace XMath;
 
 const int MAX_OBJECT_EFFECT = 10;
-class MeshObject : public GAMObject
+class MeshObject : public GAMVisElement
 {
 private:
 	
@@ -38,24 +38,24 @@ public:
 	{
 		DefaultInit();
 	}
-	MeshObject(LPDIRECT3DDEVICE9 TDDevice, ErroreLoger* Tloger=0):GAMObject(TDDevice, Tloger)
+	MeshObject(LPDIRECT3DDEVICE9 TDDevice, ErroreLoger* Tloger=0) : GAMVisElement(TDDevice, Tloger)
 	{
 		DefaultInit();
 	}
-	MeshObject(GAMObject* Tparent) : GAMObject(Tparent)
+	MeshObject(GAMObject* Tparent) : GAMVisElement(Tparent)
 	{
 		DefaultInit();
 	}
-	MeshObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, ErroreLoger* Tloger=0):GAMObject(TDDevice, Tparent, Tloger)
+	MeshObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, ErroreLoger* Tloger=0):GAMVisElement(TDDevice, Tparent, Tloger)
 	{
 		DefaultInit();
 	}
-	MeshObject(LPDIRECT3DDEVICE9 TDDevice, LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9* Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0):GAMObject(TDDevice, Tloger)
+	MeshObject(LPDIRECT3DDEVICE9 TDDevice, LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9* Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0):GAMVisElement(TDDevice, Tloger)
 	{
 		DefaultInit();
 		Init(Tmesh,  Ttexture1, Tmaterial, TcountMaterials, Tloger);
 	}
-	MeshObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9* Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0) : GAMObject(TDDevice, Tparent, Tloger)
+	MeshObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9* Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0) : GAMVisElement(TDDevice, Tparent, Tloger)
 	{
 		DefaultInit();
 		Init(Tmesh,  Ttexture1, Tmaterial, TcountMaterials, Tloger);

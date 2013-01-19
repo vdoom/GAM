@@ -4,11 +4,11 @@
 #define H_VERTEX_OBJECT
 
 #include <vector>
-#include "GAMObject.h"
+#include "GAMVisElemen.h"
 #include "Xmath.h"
 #include "Bounds.h"
 
-class VertexObject : public GAMObject
+class VertexObject : public GAMVisElement
 {
 public:
 	enum RenderType
@@ -49,24 +49,24 @@ public:
 	{
 		DefaultInit();
 	}
-	VertexObject(LPDIRECT3DDEVICE9 TDDevice, ErroreLoger* Tloger=0):GAMObject(TDDevice, Tloger)
+	VertexObject(LPDIRECT3DDEVICE9 TDDevice, ErroreLoger* Tloger=0):GAMVisElement(TDDevice, Tloger)
 	{
 		DefaultInit();
 	}
-	VertexObject(GAMObject* TParent) : GAMObject(TParent)
+	VertexObject(GAMObject* TParent) : GAMVisElement(TParent)
 	{
 		DefaultInit();
 	}
-	VertexObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, ErroreLoger* Tloger=0):GAMObject(TDDevice, Tparent, Tloger)
+	VertexObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, ErroreLoger* Tloger=0):GAMVisElement(TDDevice, Tparent, Tloger)
 	{
 		DefaultInit();
 	}
-	VertexObject(LPDIRECT3DDEVICE9 TDDevice, std::vector<GAMVERTEX>& TVertices, std::vector<int>& TIndexec, LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9 Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0):GAMObject(TDDevice, Tloger)
+	VertexObject(LPDIRECT3DDEVICE9 TDDevice, std::vector<GAMVERTEX>& TVertices, std::vector<int>& TIndexec, LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9 Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0):GAMVisElement(TDDevice, Tloger)
 	{
 		DefaultInit();
 		Init(TVertices, TIndexec, Tmesh, Ttexture1, Tmaterial, TcountMaterials, Tloger);
 	}
-	VertexObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, std::vector<GAMVERTEX>& TVertices, std::vector<int>& TIndexec, LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9 Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0):GAMObject(TDDevice, Tparent, Tloger)
+	VertexObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, std::vector<GAMVERTEX>& TVertices, std::vector<int>& TIndexec, LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9 Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0):GAMVisElement(TDDevice, Tparent, Tloger)
 	{
 		DefaultInit();
 		Init(TVertices, TIndexec, Tmesh, Ttexture1, Tmaterial, TcountMaterials, Tloger);

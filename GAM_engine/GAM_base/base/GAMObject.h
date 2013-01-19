@@ -6,27 +6,7 @@
 #include <Objbase.h>
 #include <string>
 
-#define D3DFVF_MESHVERTEX   (D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_TEX1)
 
-struct GAMVERTEX
-{
-    D3DXVECTOR3 p;
-    D3DXVECTOR3 n;
-    FLOAT       tu, tv;
-
-	GAMVERTEX & operator = (const GAMVERTEX & other )
-	{
-		if (this != &other) 
-        {
-			p = other.p;
-			n = other.n;
-			tu = other.tu;
-			tv = other.tv;
-        }
-        return *this;
-	}
-	//Need to finish other basic operators
-};
 //typedef GAMObject* LPGAMObject;
 //class GAMObject;
 
@@ -37,27 +17,17 @@ protected:
 	std::vector<GAMObject*> items;
 	std::wstring name;
 	GUID guid;
+	//todo: remove hierarhi to GAMVisElement
 	GAMObject* parent;
-	D3DXMATRIX matrixLocalTransform;
-	D3DXMATRIX matrixGlobalTransform;
-	D3DXVECTOR3 vectorPosition;
-	D3DXVECTOR3 vectorRotation;
-	D3DXVECTOR3 vectorScale;
-	D3DXVECTOR2 mipMap;
-	LPDIRECT3DDEVICE9 DDevice;
-	ErroreLoger* loger;
-	bool visible;
 	
-	void StartUpInit()
+	ErroreLoger* loger;
+	
+	
+	virtual void StartUpInit()
 	{
 		parent = 0;
-		visible = true;
 		name = std::wstring(TEXT("GAMObject"));
-		vectorScale = D3DXVECTOR3(1, 1, 1);
 		CoCreateGuid(&guid);
-		D3DXMatrixIdentity(&matrixLocalTransform);
-		D3DXMatrixIdentity(&matrixGlobalTransform);
-		//RecalcMatrixGlobal();
 	}
 	/*void SetLocalTransforMatrixToZero()
 	{
@@ -87,9 +57,9 @@ public:
 		StartUpInit();
 		CoCreateGuid(&guid);
 	}
-	GAMObject(LPDIRECT3DDEVICE9 TDDevice, ErroreLoger* Tloger=0)
+	GAMObject(/*LPDIRECT3DDEVICE9 TDDevice,*/ ErroreLoger* Tloger)
 	{
-		DDevice = TDDevice;
+		//DDevice = TDDevice;
 		loger = Tloger;
 		StartUpInit();
 		CoCreateGuid(&guid);
@@ -101,10 +71,10 @@ public:
 		CoCreateGuid(&guid);
 		//RecalcMatrixGlobal();
 	}
-	GAMObject(LPDIRECT3DDEVICE9 TDDevice, GAMObject* Tparent, ErroreLoger* Tloger=0)
+	GAMObject(/*LPDIRECT3DDEVICE9 TDDevice,*/ GAMObject* Tparent, ErroreLoger* Tloger)
 	{
 		parent = Tparent;
-		DDevice = TDDevice;
+		//DDevice = TDDevice;
 		loger = Tloger;
 		StartUpInit();
 		CoCreateGuid(&guid);
@@ -123,47 +93,6 @@ public:
 
 	virtual void Draw() = 0;
 	
-	virtual D3DXVECTOR3 GetPosition()
-	{ return vectorPosition; }
-	virtual D3DXVECTOR3 GetRotation()
-	{ return vectorRotation; }
-	virtual D3DXVECTOR3 GetScale()
-	{ return vectorScale; }
-
-	virtual void SetPosition(D3DXVECTOR3 pos)
-	{ 
-		vectorPosition = pos;	
-		D3DXMATRIX MatTemp;
-		D3DXMatrixIdentity(&MatTemp);
-		D3DXMatrixTranslation(&MatTemp, vectorPosition.x, vectorPosition.y, vectorPosition.z);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		RecalcMatrixGlobalOnly();
-		//RecalcMatrixGlobal();
-	}
-	virtual void SetRotation(D3DXVECTOR3 angles)
-	{ 
-		vectorRotation = angles; 
-		D3DXMATRIX MatTemp;
-		D3DXMatrixIdentity(&MatTemp);
-		D3DXMatrixRotationX(&MatTemp, vectorRotation.x);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		D3DXMatrixRotationY(&MatTemp, vectorRotation.y);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		D3DXMatrixRotationZ(&MatTemp, vectorRotation.z);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		//D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		RecalcMatrixGlobalOnly();
-	}
-	virtual void SetScale(D3DXVECTOR3 scale)
-	{ 
-		vectorScale = scale; 
-		D3DXMATRIX MatTemp;
-		D3DXMatrixIdentity(&MatTemp);
-		D3DXMatrixScaling(&MatTemp, vectorScale.x, vectorScale.y, vectorScale.z);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		RecalcMatrixGlobalOnly();
-		//RecalcMatrixGlobal();
-	}
 
 	virtual void SetName(std::wstring str)
 	{
@@ -182,18 +111,6 @@ public:
 		loger = Tloger;
 	}
 	
-	bool IsVisible()
-	{ return visible; }
-
-	void SetVisible(bool Tvisible)
-	{ visible = Tvisible; }
-
-	void Show()
-	{ visible = true; }
-
-	void Hide()
-	{ visible = false; }
-
 	size_t ChildrenCount()
 	{
 		return items.size();
@@ -321,14 +238,7 @@ public:
 		//RecalcMatrixGlobal();
 	}
 
-	void SetDevice(LPDIRECT3DDEVICE9 TDDevice)
-	{
-		DDevice = TDDevice;
-	}
-
-	LPDIRECT3DDEVICE9 GetDevice()
-	{ return DDevice;}
-
+	
 	void AddChild(GAMObject* obj)
 	{
 		obj->SetParent((GAMObject*)this);
@@ -359,59 +269,10 @@ public:
 		delete this;
 	}
 
-	D3DXMATRIX GetMatrxLocalTransform()
-	{
-		return matrixLocalTransform;
-	}
-	D3DXMATRIX GetMatrxGlobalTransform()
-	{
-		return matrixGlobalTransform;
-	}
-
-	void RecalcMatrixLocal()
-	{
-		D3DXMATRIX MatTemp;
-		D3DXMatrixIdentity(&MatTemp);
-		//SetLocalTransforMatrixToZero();
-		//D3DXMatrixRotationAxis(&MatTemp,);
-		D3DXMatrixRotationX(&MatTemp, vectorRotation.x);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		D3DXMatrixRotationY(&MatTemp, vectorRotation.y);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		D3DXMatrixRotationZ(&MatTemp, vectorRotation.z);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		D3DXMatrixScaling(&MatTemp, vectorScale.x, vectorScale.y, vectorScale.z);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-		D3DXMatrixTranslation(&MatTemp, vectorPosition.x, vectorPosition.y, vectorPosition.z);
-		D3DXMatrixMultiply(&matrixLocalTransform, &matrixLocalTransform, &MatTemp);
-	}
-	void RecalcMatrixGlobal()
-	{
-		RecalcMatrixLocal();
-		RecalcMatrixGlobalOnly();
-	}
-
-	void RecalcMatrixGlobalOnly()
-	{
-		if(parent != 0)
-		{
-			//parent->RecalcMatrixLocal();
-			D3DXMatrixMultiply(&matrixGlobalTransform, &parent->GetMatrxGlobalTransform(), &matrixLocalTransform);
-		}
-		else
-		{
-			matrixGlobalTransform = matrixLocalTransform;
-		}
-	}
-
+	
 	virtual GAMObject* Clone() = 0;
 
-	static D3DXMATRIX IdentityMatrix()
-	{
-		D3DXMATRIX tmp;
-		D3DXMatrixIdentity(&tmp);
-		return tmp;
-	}
+	
 };
 
 #endif

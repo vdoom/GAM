@@ -12,7 +12,7 @@
 #include "..\input\InputProcessorBase.h"
 #include "..\camera\Camera.h"
 #include "..\log\ErroreLoger.h"
-#include "..\base\GAMObject.h"
+#include "..\base\GAMVisElemen.h"
 //#include "gClasses\Camera.h"
 
 class GAMApp
