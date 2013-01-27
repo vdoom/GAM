@@ -19,13 +19,13 @@ protected:
 	GUID guid;
 	//todo: remove hierarhi to GAMVisElement
 	GAMObject* parent;
-	
 	ErroreLoger* loger;
-	
+	bool m_needDelete;	
 	
 	virtual void StartUpInit()
 	{
 		parent = 0;
+		m_needDelete = false;
 		name = std::wstring(TEXT("GAMObject"));
 		CoCreateGuid(&guid);
 	}
@@ -81,19 +81,18 @@ public:
 	}
 	virtual ~GAMObject()
 	{
-		std::vector<GAMObject*>::iterator pos;
-		for(pos = items.begin(); pos!=items.end(); pos++)
-		{
-			GAMObject* tmp = *pos;
-			tmp->Delete();
-			//items.erase(pos);
-		}
-		items.clear();
+		//std::vector<GAMObject*>::iterator pos;
+		//for(pos = items.begin(); pos!=items.end(); pos++)
+		//{
+		//	GAMObject* tmp = *pos;
+		//	tmp->Delete();
+		//	//items.erase(pos);
+		//}
+		//items.clear();
+		Delete();
 	}
 
 	virtual void Draw() = 0;
-	
-
 	virtual void SetName(std::wstring str)
 	{
 		name = str;
@@ -105,12 +104,11 @@ public:
 	}
 
 	virtual std::wstring GetTypeStr() = 0;
-
 	void SetLoger(ErroreLoger* Tloger)
 	{
 		loger = Tloger;
 	}
-	
+	bool IsNeedKill(){return m_needDelete;}
 	size_t ChildrenCount()
 	{
 		return items.size();
@@ -266,7 +264,7 @@ public:
 		}
 		items.clear();
 
-		delete this;
+		//delete this;
 	}
 
 	

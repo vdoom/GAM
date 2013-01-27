@@ -45,7 +45,7 @@ public:
 		objectVert->CreatePlane(D3DXVECTOR3(-10, 0, -10), D3DXVECTOR3(10 ,0 ,10), VertexObject::IndexingType::Triangle);
 		m_pObjects->push_back(objectVert);
 
-		m_timer = new GAMTimer<PingvApp>(1000, this, &PingvApp::MoveCamera, true);
+		m_timer = new GAMTimer<PingvApp>(1000, this, &PingvApp::MoveCamera, false);
 		m_pObjects->push_back(m_timer);
 	}
 	virtual HRESULT InitInput(HINSTANCE t_hinst)

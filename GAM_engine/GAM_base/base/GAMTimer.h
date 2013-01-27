@@ -5,7 +5,6 @@
 
 #include <Windows.h.>
 #include "GAMObject.h"
-//TODO: NEED REFINE!!! NEED ADD CYCLIC PARAMETR;
 template <class T> class GAMTimer : public GAMObject
 {
 private: 
@@ -13,7 +12,7 @@ private:
 	DWORD m_startTime;
 	DWORD m_endTime;
 	bool m_started;
-	bool m_needDestroy;
+	//bool m_needDestroy;
 	bool m_cyclic;
 	void (T::*m_action)();
 public:
@@ -21,7 +20,8 @@ public:
 	GAMTimer(void)
 	{
 		m_started = false;
-		m_needDestroy = false;
+		//m_needDestroy = false;
+		m_needDelete = false
 		m_startTime = 0;
 		m_endTime = 0;
 	}
@@ -48,7 +48,7 @@ public:
 		Update();
 	}
 
-	//Todo: need refine!!!
+	//Todo: need test!!!
 	virtual GAMObject* Clone()
 	{
 		return new GAMTimer<T>(m_endTime, m_invoker, m_action, m_cyclic);
@@ -57,14 +57,14 @@ public:
 
 	void Update()
 	{
-		if(m_started && !m_needDestroy)
+		if(m_started && !m_needDelete)
 		{
 			if(ElapsedTime() >= m_endTime)
 			{
 				(m_invoker->*m_action)();
 				if(!m_cyclic)
 				{
-					m_needDestroy = true;
+					m_needDelete = true;
 				}
 				else
 				{
@@ -77,7 +77,7 @@ public:
 	void StartTimer(DWORD t_endTime, T* t_invoker, void (T::*t_action)(), bool t_cyclic = false)
 	{
 		m_started = true;
-		m_needDestroy = false;
+		m_needDelete = false;
 		m_startTime = timeGetTime();
 		m_action = t_action;
 		m_endTime = t_endTime; 
@@ -87,12 +87,13 @@ public:
 
 	bool IsStarted()
 	{return m_started;}
-	bool IsNeedDelete()
-	{return m_needDestroy;}
+	/*bool IsNeedDelete()
+	{return m_needDestroy;}*/
 	void KillNextTime()
 	{
 		m_cyclic = false;
-		m_needDestroy = true;
+		m_needDelete = true;
+		//m_needDestroy = true;
 	}
 };
 

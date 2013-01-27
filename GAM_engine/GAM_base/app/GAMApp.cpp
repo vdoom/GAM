@@ -193,7 +193,25 @@ void GAMApp::Render()
 
 	for (vector<GAMObject*>::const_iterator it = m_pObjects->begin(); it != m_pObjects->end(); ++it) 
 	{
-		((GAMObject*)*it)->Draw();
+		if(((GAMObject*)*it)->IsNeedKill())
+		{
+			((GAMObject*)*it)->Delete();
+			
+			if((it+1) != m_pObjects->end())
+			{
+				++it;
+				m_pObjects->erase(it-1);
+			}
+			else
+			{
+				m_pObjects->erase(it);
+				break;
+			}
+		}
+		else
+		{
+			((GAMObject*)*it)->Draw();
+		}
 	}
 
 	m_pCamera->Update();
