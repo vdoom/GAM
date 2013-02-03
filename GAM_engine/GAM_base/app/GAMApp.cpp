@@ -199,8 +199,7 @@ void GAMApp::Render()
 			
 			if((it+1) != m_pObjects->end())
 			{
-				++it;
-				m_pObjects->erase(it-1);
+				it = m_pObjects->erase(it);
 			}
 			else
 			{
