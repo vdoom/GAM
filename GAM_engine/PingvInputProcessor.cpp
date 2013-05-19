@@ -34,8 +34,23 @@ void PingvInputProcessor::UpdateKeyBoardInput(GAMApp* t_app)
 			loger->SendToLog(_T("PressW"));
 			(m_apptt->*PressKey_W)();
 		}
-		else
-		{loger->SendToLog(_T("notPressWWW"));}
+		if(KEYDOWN(tt_data, DIK_A))
+		{
+			loger->SendToLog(_T("PressA"));
+			(m_apptt->*PressKey_A)();
+		}
+		if(KEYDOWN(tt_data, DIK_S))
+		{
+			loger->SendToLog(_T("PressS"));
+			(m_apptt->*PressKey_S)();
+		}
+		if(KEYDOWN(tt_data, DIK_D))
+		{
+			loger->SendToLog(_T("PressD"));
+			(m_apptt->*PressKey_D)();
+		}
+		//else
+		//{loger->SendToLog(_T("notPressWWW"));}
 	}
 	else
 	{loger->SendToLog(_T("notPress"));}

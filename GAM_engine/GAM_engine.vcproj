@@ -174,43 +174,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\GAM_base\app\GAMApp.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\input\GAMInput.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\app\GAMTime.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\GAMTimer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\GAMVisElemen.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\init.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\GAM_base\input\InputProcessorBase.cpp"
+				RelativePath=".\PingvAIBot.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\GAM_base\base\MeshLoader.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\MeshObject .cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\OBJMeshLoader.cpp"
+				RelativePath=".\PingvAISquareMap.cpp"
 				>
 			</File>
 			<File
@@ -218,21 +190,77 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PingvBot.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PingvInputProcessor.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\GAM_base\base\TextObject.cpp"
+			<Filter
+				Name="GAMEngine"
 				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\VertexObject.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\XMeshLoader.cpp"
-				>
-			</File>
+				<File
+					RelativePath=".\GAM_base\app\GAMApp.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\app\GAMConsole.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\input\GAMInput.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\app\GAMParallelPocess.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\GAMScene.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\app\GAMTime.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\GAMTimer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\GAMVisElemen.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\input\InputProcessorBase.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\MeshLoader.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\MeshObject .cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\OBJMeshLoader.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\TextObject.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\VertexObject.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\XMeshLoader.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -240,85 +268,113 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\GAM_base\base\Bounds.h"
+				RelativePath=".\PingvAIBot.h"
 				>
 			</File>
 			<File
-				RelativePath=".\GAM_base\camera\Camera.h"
+				RelativePath=".\PingvAISquareMap.h"
 				>
 			</File>
 			<File
-				RelativePath=".\GAM_base\log\ErroreLoger.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\camera\Frustum.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\app\GAMApp.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\input\GAMInput.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\GAMObject.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\app\GAMTime.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\GAMTimer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\GAMVisElemen.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\options_parsers\INIreader.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\input\InputProcessorBase.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\MeshLoader.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\MeshObject.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\OBJMeshLoader.h"
+				RelativePath=".\PingvBot.h"
 				>
 			</File>
 			<File
 				RelativePath=".\PingvInputProcessor.h"
 				>
 			</File>
-			<File
-				RelativePath=".\GAM_base\base\TextObject.h"
+			<Filter
+				Name="GAMEngine"
 				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\VertexObject.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\math\Xmath.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GAM_base\base\XMeshLoader.h"
-				>
-			</File>
+				<File
+					RelativePath=".\GAM_base\base\Bounds.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\camera\Camera.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\log\ErroreLoger.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\camera\Frustum.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\app\GAMApp.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\app\GAMConsole.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\input\GAMInput.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\GAMObject.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\app\GAMParallelPocess.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\GAMScene.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\app\GAMTime.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\GAMTimer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\GAMVisElement.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\options_parsers\INIreader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\input\InputProcessorBase.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\MeshLoader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\MeshObject.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\OBJMeshLoader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\TextObject.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\VertexObject.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\math\Xmath.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GAM_base\base\XMeshLoader.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"
