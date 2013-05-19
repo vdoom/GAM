@@ -1,8 +1,8 @@
-#include "GAMVisElemen.h"
-#include <d3d9.h>
-#include <d3dx9.h>
-#include <D3dx9math.h>
-#include <Vector>
+//#include "GAMVisElemen.h"
+//#include <d3d9.h>
+//#include <d3dx9.h>
+//#include <D3dx9math.h>
+//#include <Vector>
 
 //void GAMVisElement::SetPosition(D3DXVECTOR3 pos)
 //{ 

@@ -4,7 +4,7 @@
 #define H_VERTEX_OBJECT
 
 #include <vector>
-#include "GAMVisElemen.h"
+#include "GAMVisElement.h"
 #include "Xmath.h"
 #include "Bounds.h"
 
@@ -95,13 +95,14 @@ public:
 
 	void SetRenderType(RenderType TRendertpe){render_type = TRendertpe;}
 	RenderType GetRenderType(){ return render_type;}
-
+	IndexingType GetIndexingType(){return indexing_type;}
 	HRESULT Create(); //OB'YAZATELNO DODELAT'
 	HRESULT CreatePlane(D3DXVECTOR3 Tmin, D3DXVECTOR3 Tmax, IndexingType Ttype);
 	HRESULT CreateByBounds();
 	HRESULT LoadTexture(wstring fileName);
 	HRESULT LoadData();
 	void ChangeRenderMode(RenderType);
+	
 
 	static VertexObject* InstantiateVertexObjectByBox();
 	static VertexObject* InstantiateVertexObjectByMesh();

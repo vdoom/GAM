@@ -198,7 +198,51 @@ void VertexObject::ChangeRenderMode(RenderType TrenType)
 {
 	render_type = TrenType;
 }
-
+//HRESULT VertexObject::ChangeIndexingMode(IndexingType TindexingMode)
+//{
+//	indexing_type = TindexingMode;
+//	short Indeces[6];
+//	HRESULT hr = DDevice->CreateIndexBuffer(sizeof(short)*6,0,D3DFMT_INDEX16, D3DPOOL_DEFAULT, &index_bufer, NULL );
+//	if(FAILED(hr))
+//	{
+//		if(loger)
+//		{
+//			wstring number;
+//			wstringstream wstrstrm;
+//			wstrstrm << hr;
+//			wstrstrm >> number;
+//			loger->SendToLog(GetTypeStr()+GetName()+TEXT("CreateIndexBuffer: Line 147 in VertexObject.cpp ")+number);
+//		}
+//		return hr;
+//	}
+//	if(indexing_type == IndexingType::Square)
+//	{
+//		Indeces[0]=0;
+//		Indeces[1]=1;
+//		Indeces[2]=2;
+//		Indeces[3]=3;
+//		Indeces[4]=0;
+//		Indeces[5]=1;
+//	}
+//	else if(indexing_type == IndexingType::Triangle)
+//	{
+//		Indeces[0]=0;
+//		Indeces[1]=2;
+//		Indeces[2]=1;
+//		Indeces[3]=0;
+//		Indeces[4]=3;
+//		Indeces[5]=2;
+//		/*Indeces[0]=0;
+//		Indeces[1]=2;
+//		Indeces[2]=1;
+//		Indeces[3]=0;
+//		Indeces[4]=2;
+//		Indeces[5]=3;*/
+//	}
+//	VOID* IndexData = NULL;
+//	hr = index_bufer->Lock(0, 0, &IndexData, 0);
+//	return S_OK;
+//}
 HRESULT VertexObject::LoadTexture(wstring fileName)
 {
 	if(texture1)
@@ -252,7 +296,7 @@ void VertexObject::Draw()
 	if(render_type == RenderType::Greed)DDevice->DrawIndexedPrimitive(D3DPT_LINESTRIP, 0,0,4,0,6);
 }
 
-//NADA DODELAT' !!!!!!!!!!!!!!!!!!!!!!
+//Todo: Need refine !!!!!!!!!!!!!!!!!!!!!!
 GAMObject* VertexObject::Clone()
 {
 	//NADA DODELAT' !!!!!!!!!!!!!!!!!!!!!!

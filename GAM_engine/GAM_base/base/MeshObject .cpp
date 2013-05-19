@@ -32,6 +32,12 @@ void MeshObject::DefaultInit()
 	mesh = NULL;
 	texture1 = NULL;
 	InitDefaultMaterials();
+	if(this->parent == 0)
+	{
+		//matrixGlobalTransform = GAMVisElement::IdentityMatrix();
+		D3DXMatrixIdentity(&matrixLocalTransform);
+	}
+	
 }
 
 void MeshObject::Init( LPD3DXMESH Tmesh, LPDIRECT3DTEXTURE9* Ttexture1, D3DMATERIAL9 Tmaterial, DWORD TcountMaterials, ErroreLoger* Tloger = 0)
@@ -203,11 +209,12 @@ void MeshObject::Draw()
 {
 	if(visible)
 	{
-		DDevice->SetTransform(D3DTS_WORLD, &matrixGlobalTransform);
+		DDevice->SetTransform(D3DTS_WORLD, &matrixGlobalTransform);//&matrixLocalTransform);
 
 		DDevice->SetMaterial( &material);   
 		if(texture1)DDevice->SetTexture( 0,texture1);
 		mesh->DrawSubset(0);
+		
 		DDevice->SetTransform(D3DTS_WORLD, &GAMVisElement::IdentityMatrix());
 	}
 	if(!items.empty())
