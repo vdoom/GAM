@@ -472,8 +472,7 @@ HRESULT OBJMeshLoader::LoadMesh(wstring meshFileName, ErroreLoger* t_loger, DWOR
 	
 	if(t_loger && t_mesh)
 	{
-		//Todo: Uncomennt
-		//t_loger->SendToLog(TEXT("ErroreMeshLoad: Seccesfull load!!! "));
+		t_loger->SendToLog(TEXT("ErroreMeshLoad: Seccesfull load!!! "));
 	}
 	return S_OK;
 }

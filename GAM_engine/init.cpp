@@ -32,16 +32,20 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, MsgProc, 0L, 0L, 
 		GetModuleHandle(NULL), NULL, NULL, NULL, NULL,
 		TEXT("GAM_engine"), NULL };
-
 	RegisterClassEx( &wc );
 
 	// Create the application's window
 	HWND hWnd = CreateWindow( TEXT("GAM_engine"),TEXT("GAME"), 
 		WS_OVERLAPPEDWINDOW, 100, 100, 1024, 600,
 		GetDesktopWindow(), NULL, wc.hInstance, NULL );
+	//if(!DI_Init(hInst)) fuck<<"All Fuck";// init Direct input device
+	//if(!DI_InitM(hInst,hWnd)) fuck<<"All Fuck M";// init Direct input device
 
 	m_app->Init3D(hWnd);
 	m_app->InitInput(hInst);
+	//init3d( hWnd ); //init DirectX (3D)
+
+	//D3DXMatrixIdentity(&matworld);
 
 	ShowWindow( hWnd, SW_SHOWDEFAULT );
 	UpdateWindow( hWnd );
@@ -55,6 +59,18 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 			DispatchMessage( &msg );
 		}
 		m_app->Render();
+		//else
+		/*ProcessKBInput();
+		ReadBufferedData( hWnd );
+		ReadImmediateData( hWnd );
+		Render();*/
+		//fpsT++;
+		/*if(TimeCounter+1000 <= timeGetTime())
+		{
+			TimeCounter=timeGetTime();
+			fps=fpsT;
+			fpsT=0;
+		}*/
 	}
 
 
@@ -62,5 +78,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 	delete m_app;
 	//Cleanup();
 	UnregisterClass(TEXT("GAM_engine"), wc.hInstance );
+	return 0;
+
 	return 0;
 }

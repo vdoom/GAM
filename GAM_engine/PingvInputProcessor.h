@@ -11,9 +11,9 @@ class PingvInputProcessor : public InputProcessorBase
 public:
 	//-------------KEY-ACTIONS--------------
 	void (PingvApp::*PressKey_W)();
-	void (PingvApp::*PressKey_A)();
-	void (PingvApp::*PressKey_S)();
-	void (PingvApp::*PressKey_D)();
+	//void (*PressKey_A)();
+	//void (*PressKey_S)();
+	//void (*PressKey_D)();
 	//void (*PressKey)(char* t_key);
 	//void SetupMet(void (*Press)()){(*Press)();}
 	//------------MOUSE-ACTIONS-------------

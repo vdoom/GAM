@@ -1,7 +1,7 @@
 #ifndef H_MESH_OBJECT
 #define H_MESH_OBJECT
 
-#include "GAMVisElement.h"
+#include "GAMVisElemen.h"
 #include "MeshLoader.h"
 #include "Xmath.h"
 #include "Bounds.h"
@@ -9,7 +9,6 @@
 using namespace XMath;
 
 const int MAX_OBJECT_EFFECT = 10;
-
 class MeshObject : public GAMVisElement
 {
 private:

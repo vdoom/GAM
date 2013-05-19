@@ -22,11 +22,10 @@ protected:
 	ErroreLoger* loger;
 	bool m_needDelete;	
 	
-	void StartUpInit()
+	virtual void StartUpInit()
 	{
 		parent = 0;
 		m_needDelete = false;
-		//todo: need remake naming mechnick with polymorphism
 		name = std::wstring(TEXT("GAMObject"));
 		CoCreateGuid(&guid);
 	}
@@ -67,17 +66,17 @@ public:
 	}
 	GAMObject(GAMObject* Tparent)
 	{
-		StartUpInit();
 		parent = Tparent;
+		StartUpInit();
 		CoCreateGuid(&guid);
 		//RecalcMatrixGlobal();
 	}
 	GAMObject(/*LPDIRECT3DDEVICE9 TDDevice,*/ GAMObject* Tparent, ErroreLoger* Tloger)
 	{
+		parent = Tparent;
 		//DDevice = TDDevice;
 		loger = Tloger;
 		StartUpInit();
-		parent = Tparent;
 		CoCreateGuid(&guid);
 	}
 	virtual ~GAMObject()
@@ -93,8 +92,7 @@ public:
 		Delete();
 	}
 
-	virtual void Draw() = 0;// Need Remake To Update || Replace to GAMVizObject
-	//virtual void Update();// = 0;
+	virtual void Draw() = 0;
 	virtual void SetName(std::wstring str)
 	{
 		name = str;
@@ -271,14 +269,8 @@ public:
 
 	
 	virtual GAMObject* Clone() = 0;
+
 	
-	////Todo: perheps need kill!!!
-	//static D3DXMATRIX IdentityMatrix()
-	//{
-	//	D3DXMATRIX tmp;
-	//	D3DXMatrixIdentity(&tmp);
-	//	return tmp;
-	//}
 };
 
 #endif

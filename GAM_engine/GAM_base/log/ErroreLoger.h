@@ -35,7 +35,7 @@ public:
 	{
 		wchar_t buff[20];
 		wstring timeStr = TEXT("[");
-		GetSystemTime(&time);
+		//GetSystemTime(&time);
 		GetLocalTime(&time);
 		_itow( time.wHour, buff, 10 );
 		timeStr.append(buff);
@@ -58,7 +58,6 @@ public:
 	void SendToLog(wstring textLog)
 	{
 		logFile<<GetTime().c_str()<<textLog.c_str()<<endl;
-		//logFile<<textLog.c_str()<<endl;
 		logFile.flush();
 	}
 };

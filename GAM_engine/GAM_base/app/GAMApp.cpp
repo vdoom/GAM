@@ -82,8 +82,8 @@ HRESULT GAMApp::Init3D(HWND t_hWnd)
 	//d3dpp.MultiSampleType = D3DMULTISAMPLE_2_SAMPLES;
 	d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dpp.BackBufferCount = 3;
-	d3dpp.BackBufferWidth = 1280;//1366;//1280;
-	d3dpp.BackBufferHeight = 720;//768;//720;
+	d3dpp.BackBufferWidth = 1366;
+	d3dpp.BackBufferHeight = 768;
 	d3dpp.EnableAutoDepthStencil = TRUE;
 	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 
@@ -100,7 +100,7 @@ HRESULT GAMApp::Init3D(HWND t_hWnd)
 		return E_FAIL;
 	}
 
-	D3DXMatrixPerspectiveFovLH( &m_matProj, D3DX_PI/4, 16/8.5, 1.0f, 500.0f );
+	D3DXMatrixPerspectiveFovLH( &m_matProj, D3DX_PI/4, 16/8, 1.0f, 500.0f );
 	m_pD3DDevice->SetTransform( D3DTS_PROJECTION, &m_matProj );
 
 	m_pCamera = new CXCamera(m_pD3DDevice);
@@ -149,7 +149,6 @@ void GAMApp::Render()
 		D3DCOLOR_XRGB(0,120,0), 1.0f, 0 );
 	m_pD3DDevice->BeginScene();
 
-	//Perheps Need preinit material to use
 	D3DMATERIAL9 mtrl;
 	ZeroMemory( &mtrl, sizeof(mtrl) );
 	mtrl.Diffuse.r = mtrl.Ambient.r = 1.0f;
@@ -192,7 +191,7 @@ void GAMApp::Render()
 	m_pD3DDevice->SetSamplerState(0,D3DSAMP_MAXANISOTROPY, 16);
 	//        g_pD3DDevice->DrawPrimitive( D3DPT_TRIANGLELIST, 0, 2 );
 
-	for (vector<GAMObject*>::iterator it = m_pObjects->begin(); it != m_pObjects->end(); ++it) 
+	for (vector<GAMObject*>::const_iterator it = m_pObjects->begin(); it != m_pObjects->end(); ++it) 
 	{
 		if(((GAMObject*)*it)->IsNeedKill())
 		{
